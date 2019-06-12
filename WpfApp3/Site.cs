@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp3
 {
+    [Serializable]
     public class Site
     {
         string name;
@@ -73,6 +74,10 @@ namespace WpfApp3
             {
                 password = value;
             }
+        }
+        public Site()
+        {
+
         }
 
         public Site(string name, string url, string description, string login, string password)

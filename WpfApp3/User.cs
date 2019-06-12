@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace WpfApp3
 {
+    [Serializable]
     public class User
     {
-        string email;
-        string login;
-        string password;
+        public string email;
+        public string login;
+        public string password;
 
         public string Login{
             get
@@ -27,7 +28,10 @@ namespace WpfApp3
         }
         public List<Site> sites = new List<Site>();
 
-       
+       public User()
+        {
+
+        }
 
         public User(string email, string login, string password)
         {

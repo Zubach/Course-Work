@@ -68,7 +68,7 @@
         <Button Grid.Row="4"
             Style="{StaticResource MaterialDesignRaisedAccentButton}"
             Width="100"
-            ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Click="Button_Click">
             ACCEPT
         </Button>
     </Grid>

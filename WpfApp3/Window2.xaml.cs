@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Xml.Serialization;
 
 namespace WpfApp3
 {
@@ -22,16 +24,43 @@ namespace WpfApp3
     public partial class Window2 : Window
     {
 
-        List<User> users = new List<User>()
+        public List<User> users = new List<User>()
         {
-            new User("vanyakage@gmail.com","Vanya","123")
+           
         };
         
         public Window2()
         {
             InitializeComponent();
 
-            users[0].sites.Add(new Site("Google", "google.com", "Bdabdaya", "vanyakage@gmail.com", "123"));
+            
+
+           
+            using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+            {
+                XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+                users = formatter.Deserialize(fs) as List<User>;
+               // formatter.Serialize(fs, users);
+            }
+        }
+
+        public Window2(User user)
+        {
+            InitializeComponent();
+
+
+            using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+            {
+                XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+                users = formatter.Deserialize(fs) as List<User>;
+                // formatter.Serialize(fs, users);
+            }
+
+
+            if (user != null)
+            {
+                users.Add(user);
+            }
         }
 
         User foundUser = null;
@@ -74,7 +103,8 @@ namespace WpfApp3
             else
             {
                 (sender as DispatcherTimer).Stop();
-                Window3 wind = new Window3(foundUser);
+                Window3 wind = new Window3(foundUser,users);
+               
                 wind.Show();
                 this.Close();
                
