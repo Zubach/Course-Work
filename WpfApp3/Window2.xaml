@@ -28,6 +28,13 @@
             <RowDefinition>
             </RowDefinition>
         </Grid.RowDefinitions>
+        <TextBlock
+            Name="Info"
+            HorizontalAlignment="Center"
+             Style="{StaticResource MaterialDesignTitleTextBlock}"
+            Foreground="Red">
+            
+        </TextBlock>
         <TextBox Margin="20"
                  Grid.Row="0"
              x:Name="LoginTextBox"

@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 
 namespace WpfApp3
 {
-    class User
+    public class User
     {
         string email;
         string login;
         string password;
-        List<Site> sites = new List<Site>();
 
-        public List<Site> SitesList
+        public string Login{
+            get
+            {
+                return login;
+            }
+         }
+        public string Password
         {
             get
             {
-                return sites;
+                return password;
             }
         }
+        public List<Site> sites = new List<Site>();
+
+       
 
         public User(string email, string login, string password)
         {

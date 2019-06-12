@@ -21,17 +21,48 @@ namespace WpfApp3
     public partial class Window3 : Window
 
     {
-        List<Site> sites = new List<Site>()
-        {
-            new Site("Google","google.com","Just google","vanyakage@gmail.com","dabdaya")
-        };
+
+        public User user = null;
+        
         public Window3()
         {
 
             
             InitializeComponent();
 
-            ListView.ItemsSource = sites;
+            
+        }
+
+        public Window3(User user)
+        {
+
+
+            InitializeComponent();
+            this.user = user;
+
+            ListView.ItemsSource = user.sites;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window5 wind = new Window5(this);
+            wind.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+           Site site = ListView.SelectedItem as Site;
+            if(site != null)
+            {
+                Window5 wind = new Window5(this,site);
+                wind.Show();
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Window6 wind = new Window6(this);
+            wind.Show();
         }
     }
 }

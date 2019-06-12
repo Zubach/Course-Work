@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp3
 {
-    class Site
+    public class Site
     {
         string name;
         string url;
@@ -21,6 +21,10 @@ namespace WpfApp3
                 return name;
 
             }
+            set
+            {
+                name = value;
+            }
         }
 
         public string Description
@@ -28,6 +32,10 @@ namespace WpfApp3
             get
             {
                 return description;
+            }
+            set
+            {
+                description = value;
             }
         }
 
@@ -37,6 +45,10 @@ namespace WpfApp3
             {
                 return url;
             }
+            set
+            {
+                url = value;
+            }
         }
 
         public string Login
@@ -45,6 +57,10 @@ namespace WpfApp3
             {
                 return login;
             }
+            set
+            {
+                login = value;
+            }
         }
 
         public string Password
@@ -52,6 +68,10 @@ namespace WpfApp3
             get
             {
                 return password;
+            }
+            set
+            {
+                password = value;
             }
         }
 
@@ -62,6 +82,17 @@ namespace WpfApp3
             this.description = description;
             this.login = login;
             this.password = password;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var site = obj as Site;
+            return site != null &&
+                   Name == site.Name &&
+                   Description == site.Description &&
+                   Url == site.Url &&
+                   Login == site.Login &&
+                   Password == site.Password;
         }
     }
 }

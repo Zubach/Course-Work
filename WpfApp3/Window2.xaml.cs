@@ -21,19 +21,45 @@ namespace WpfApp3
     /// </summary>
     public partial class Window2 : Window
     {
+
+        List<User> users = new List<User>()
+        {
+            new User("vanyakage@gmail.com","Vanya","123")
+        };
+        
         public Window2()
         {
             InitializeComponent();
+
+            users[0].sites.Add(new Site("Google", "google.com", "Bdabdaya", "vanyakage@gmail.com", "123"));
         }
+
+        User foundUser = null;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+            bool TrueAccount = false;
+            
+            foreach(var item in users)
+            {
+                if(item.Login == LoginTextBox.Text && item.Password == Password.Password)
+                {
+                    TrueAccount = true;
+                    foundUser = item;
+                }
+            }
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(9000);
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
+            if (TrueAccount)
+            {
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(9000);
+                timer.Tick += new EventHandler(timer_Tick);
+                timer.Start();
+            }
+            else
+            {
+                Info.Text = "Wrong password or login";
+            }
            
         }
 
@@ -48,7 +74,7 @@ namespace WpfApp3
             else
             {
                 (sender as DispatcherTimer).Stop();
-                Window3 wind = new Window3();
+                Window3 wind = new Window3(foundUser);
                 wind.Show();
                 this.Close();
                
