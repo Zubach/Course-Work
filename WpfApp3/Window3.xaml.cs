@@ -231,5 +231,43 @@ namespace WpfApp3
                 MessageBox.Show("Login: " + max.Str + '\n' + "Count of match: " + max.Count);
             }
         }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            int key;
+            if(Key.Text != null &&  int.TryParse(Key.Text,out key))
+            {
+                foreach(var site in user.sites)
+                {
+                    site.Password = Cryptographer.Encrypt(site.Password, key);
+                }
+                ListView.Items.Refresh();
+                (sender as Button).IsEnabled = false;
+                DecryptBtn.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Key");
+            }
+        }
+
+        private void DecryptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            int key;
+            if (Key.Text != null && int.TryParse(Key.Text, out key))
+            {
+                foreach (var site in user.sites)
+                {
+                    site.Password = Cryptographer.Decrypt(site.Password, key);
+                }
+                ListView.Items.Refresh();
+                (sender as Button).IsEnabled = false;
+                EncryptBtn.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Key");
+            }
+        }
     }
 }

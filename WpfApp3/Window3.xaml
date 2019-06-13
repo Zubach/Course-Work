@@ -120,5 +120,35 @@
 
         </DockPanel>
 
+
+
+        <Button
+            Name="EncryptBtn"
+             Grid.Row="2"
+            Margin="0,0,0,-125"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            Width="100"
+            ToolTip="Resource name: MaterialDesignRaisedButton" Click="Button_Click_9">
+            Encrypt
+        </Button>
+
+        <Button
+            Name="DecryptBtn"
+             Grid.Row="2"
+            Margin="0,0,0,-225"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            Width="100"
+            ToolTip="Resource name: MaterialDesignRaisedButton" Click="DecryptBtn_Click">
+            Decrypt
+        </Button>
+        <TextBox
+            Name="Key"
+             Grid.Row="2"
+            Margin="0,0,0,-300"
+            Width="200"
+            Height="50"
+            materialDesign:HintAssist.Hint="Key"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
     </Grid>
 </Window>
