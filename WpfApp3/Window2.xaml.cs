@@ -33,14 +33,20 @@ namespace WpfApp3
         {
             InitializeComponent();
 
-            
 
-           
-            using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+
+            try
             {
-                XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-                users = formatter.Deserialize(fs) as List<User>;
-                //formatter.Serialize(fs, users);
+                using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+                {
+                    XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+                    users = formatter.Deserialize(fs) as List<User>;
+                    //formatter.Serialize(fs, users);
+                }
+            }
+            catch(Exception e)
+            {
+
             }
         }
 
@@ -48,14 +54,16 @@ namespace WpfApp3
         {
             InitializeComponent();
 
-
-            using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+            try
             {
-                XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-                users = formatter.Deserialize(fs) as List<User>;
-                // formatter.Serialize(fs, users);
+                using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+                {
+                    XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+                    users = formatter.Deserialize(fs) as List<User>;
+                    // formatter.Serialize(fs, users);
+                }
             }
-
+            catch (Exception e) { }
 
             if (user != null)
             {

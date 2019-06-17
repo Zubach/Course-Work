@@ -28,13 +28,18 @@ namespace WpfApp3
         {
             InitializeComponent();
 
-
-            using (FileStream fs = new FileStream("Accounts.xml",FileMode.OpenOrCreate))
+            try
             {
-                XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-                 users = formatter.Deserialize(fs) as List<User>;
-              
+
+
+                using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+                {
+                    XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+                    users = formatter.Deserialize(fs) as List<User>;
+
+                }
             }
+            catch (Exception e) { }
 
         }
 

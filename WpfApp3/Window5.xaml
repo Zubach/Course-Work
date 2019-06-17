@@ -72,7 +72,7 @@
      />
 
         <Button Grid.Row="5"
-            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Width="100"
             ToolTip="Resource name: MaterialDesignRaisedAccentButton" Click="Button_Click">
             ACCEPT
