@@ -26,7 +26,7 @@ namespace WpfApp3
 
         public List<User> users = new List<User>()
         {
-           
+         
         };
         
         public Window2()
@@ -40,7 +40,7 @@ namespace WpfApp3
             {
                 XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
                 users = formatter.Deserialize(fs) as List<User>;
-               // formatter.Serialize(fs, users);
+                //formatter.Serialize(fs, users);
             }
         }
 
