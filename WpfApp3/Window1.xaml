@@ -66,7 +66,7 @@
             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
         <Button Grid.Row="4"
-            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Width="100"
             ToolTip="Resource name: MaterialDesignRaisedAccentButton" Click="Button_Click">
             ACCEPT
