@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,87 +9,38 @@ using System.Threading.Tasks;
 namespace WpfApp3
 {
     [Serializable]
+    [Table("tblSites")]
     public class Site
     {
-        string name;
-        string url;
-        string description;
-        string login;
-        string password;
-
-        public string Name
-        {
-            get
-            {
-                return name;
-
-            }
-            set
-            {
-                name = value;
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                description = value;
-            }
-        }
-
-        public string Url
-        {
-            get
-            {
-                return url;
-            }
-            set
-            {
-                url = value;
-            }
-        }
-
-        public string Login
-        {
-            get
-            {
-                return login;
-            }
-            set
-            {
-                login = value;
-            }
-        }
-
-        public string Password
-        {
-            get
-            {
-                return password;
-            }
-            set
-            {
-                password = value;
-            }
-        }
         public Site()
         {
-
+           
         }
 
-        public Site(string name, string url, string description, string login, string password)
-        {
-            this.name = name;
-            this.url = url;
-            this.description = description;
-            this.login = login;
-            this.password = password;
-        }
+        [Key]
+        public int ID { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Url { get; set; }
+
+
+        public string Description { get; set; }
+
+        [Required]
+        public string Login { get; set; }
+
+        [Required]
+
+        public string Password { get; set; }
+
+
+
+        public int? UserID { get; set; }
+
+        public User User { get; set; }
 
         public override bool Equals(object obj)
         {

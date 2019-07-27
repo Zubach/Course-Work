@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,38 +9,29 @@ using System.Threading.Tasks;
 namespace WpfApp3
 {
     [Serializable]
+    [Table("tblUsers")]
     public class User
     {
-        public string email;
-        public string login;
-        public string password;
-
-        public string Login{
-            get
-            {
-                return login;
-            }
-         }
-        public string Password
+        public User()
         {
-            get
-            {
-                return password;
-            }
-        }
-        public List<Site> sites = new List<Site>();
-
-       public User()
-        {
-
+            this.Sites = new HashSet<Site>();
         }
 
-        public User(string email, string login, string password)
-        {
-            this.email = email;
-            this.login = login;
-            this.password = password;
+        [Key]
+        public int ID { get; set; }
 
-        }
+        [Required]
+        public string Login { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+        public virtual ICollection<Site> Sites { get; set; }
+
+
+
+
     }
 }

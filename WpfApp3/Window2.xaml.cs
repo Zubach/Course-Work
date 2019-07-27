@@ -35,40 +35,40 @@ namespace WpfApp3
 
 
 
-            try
-            {
-                using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
-                {
-                    XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-                    users = formatter.Deserialize(fs) as List<User>;
-                    //formatter.Serialize(fs, users);
-                }
-            }
-            catch(Exception e)
-            {
+            //try
+            //{
+            //    using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+            //    {
+            //        XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+            //        users = formatter.Deserialize(fs) as List<User>;
+            //        //formatter.Serialize(fs, users);
+            //    }
+            //}
+            //catch(Exception e)
+            //{
 
-            }
+            //}
         }
 
         public Window2(User user)
         {
             InitializeComponent();
 
-            try
-            {
-                using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
-                {
-                    XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-                    users = formatter.Deserialize(fs) as List<User>;
-                    // formatter.Serialize(fs, users);
-                }
-            }
-            catch (Exception e) { }
+            //try
+            //{
+            //    using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
+            //    {
+            //        XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+            //        users = formatter.Deserialize(fs) as List<User>;
+            //        // formatter.Serialize(fs, users);
+            //    }
+            //}
+            //catch (Exception e) { }
 
-            if (user != null)
-            {
-                users.Add(user);
-            }
+            //if (user != null)
+            //{
+            //    users.Add(user);
+            //}
         }
 
         User foundUser = null;

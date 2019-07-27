@@ -35,61 +35,61 @@ namespace WpfApp3
             InitializeComponent();
 
 
-            sites.AddRange(parent.user.sites);
+            //sites.AddRange(parent.user.sites);
 
-            ListView.ItemsSource = sites;
-            this.parent = parent;
+            //ListView.ItemsSource = sites;
+            //this.parent = parent;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            sites.Clear();
-            sites.AddRange(parent.user.sites);
+            //sites.Clear();
+            //sites.AddRange(parent.user.sites);
 
 
-            if (ByName.IsChecked.Value)
-            {
-                for(int i = 0; i < sites.Count;i++)
-                    if(sites[i].Name != NameTextBox.Text)
-                    {
-                        sites.RemoveAt(i);
-                        i--;
-                    }
+            //if (ByName.IsChecked.Value)
+            //{
+            //    for(int i = 0; i < sites.Count;i++)
+            //        if(sites[i].Name != NameTextBox.Text)
+            //        {
+            //            sites.RemoveAt(i);
+            //            i--;
+            //        }
                 
-            }
-            if (ByLogin.IsChecked.Value)
-            {
-                for (int i = 0; i < sites.Count; i++)
-                    if (sites[i].Login != LoginTextBox.Text)
-                    {
-                        sites.RemoveAt(i);
-                        i--;
-                    }
-            }
-            if (ByUrl.IsChecked.Value)
-            {
-                for (int i = 0; i < sites.Count; i++)
-                    if (sites[i].Url != UrlTextBox.Text)
-                    {
-                        sites.RemoveAt(i);
-                        i--;
-                    }
-            }
-            if (ByColl.IsChecked.Value)
-            {
-                for (int i = 0; i < sites.Count; i++)
-                    if (!sites[i].Description.Contains(CollocationTextBox.Text))
-                    {
-                        sites.RemoveAt(i);
-                        i--;
-                    }
-            }
+            //}
+            //if (ByLogin.IsChecked.Value)
+            //{
+            //    for (int i = 0; i < sites.Count; i++)
+            //        if (sites[i].Login != LoginTextBox.Text)
+            //        {
+            //            sites.RemoveAt(i);
+            //            i--;
+            //        }
+            //}
+            //if (ByUrl.IsChecked.Value)
+            //{
+            //    for (int i = 0; i < sites.Count; i++)
+            //        if (sites[i].Url != UrlTextBox.Text)
+            //        {
+            //            sites.RemoveAt(i);
+            //            i--;
+            //        }
+            //}
+            //if (ByColl.IsChecked.Value)
+            //{
+            //    for (int i = 0; i < sites.Count; i++)
+            //        if (!sites[i].Description.Contains(CollocationTextBox.Text))
+            //        {
+            //            sites.RemoveAt(i);
+            //            i--;
+            //        }
+            //}
 
             
 
 
-            ListView.Items.Refresh();
+            //ListView.Items.Refresh();
 
 
 

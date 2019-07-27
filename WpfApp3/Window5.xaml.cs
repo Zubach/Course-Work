@@ -54,26 +54,26 @@ namespace WpfApp3
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(site != null)
-            {
-                site.Name = NameTextBox.Text;
-                site.Login = LoginTextBox.Text;
-                site.Password = Password.Password;
-                site.Url = UrlTextBox.Text;
-                site.Description = Description.Text;
+            //if(site != null)
+            //{
+            //    site.Name = NameTextBox.Text;
+            //    site.Login = LoginTextBox.Text;
+            //    site.Password = Password.Password;
+            //    site.Url = UrlTextBox.Text;
+            //    site.Description = Description.Text;
 
 
-                parent.ListView.Items.Refresh();
-                this.Close();
-            }
-            else
-            {
-                Site newsite = new Site(NameTextBox.Text, UrlTextBox.Text, Description.Text, LoginTextBox.Text, Password.Password);
-                parent.user.sites.Add(newsite);
+            //    parent.ListView.Items.Refresh();
+            //    this.Close();
+            //}
+            //else
+            //{
+            //    Site newsite = new Site(NameTextBox.Text, UrlTextBox.Text, Description.Text, LoginTextBox.Text, Password.Password);
+            //    parent.user.sites.Add(newsite);
 
-                parent.ListView.Items.Refresh();
-                this.Close();
-            }
+            //    parent.ListView.Items.Refresh();
+            //    this.Close();
+            //}
         }
     }
 }
