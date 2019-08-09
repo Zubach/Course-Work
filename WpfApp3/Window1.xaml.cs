@@ -22,82 +22,75 @@ namespace WpfApp3
     /// </summary>
     public partial class Window1 : Window
     {
-        List<User> users = new List<User>();
+       
+        Context context = new Context();
        
         public Window1()
         {
             InitializeComponent();
 
-            //try
-            //{
-
-
-            //    using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
-            //    {
-            //        XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-            //        users = formatter.Deserialize(fs) as List<User>;
-
-            //    }
-            //}
-            //catch (Exception e) { }
+            
+            
+            
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            //Regex emailValidation = new Regex(@"\w*@\w*.((com)|(ua))");
-            //if (emailValidation.IsMatch(EmailTextBox.Text))
-            //{
-            //    bool canCreate = true;
-            //    foreach(var user in users)
-            //    {
-            //        if(user.email == EmailTextBox.Text)
-            //        {
-            //            MessageBox.Show("Account with this email is already created.");
-            //            canCreate = false;
-            //            break;
-            //        }
-            //        if(user.Login == LoginTextBox.Text)
-            //        {
+            Regex emailValidation = new Regex(@"\w*@\w*.((com)|(ua))");
+            if (emailValidation.IsMatch(EmailTextBox.Text))
+            {
+                bool canCreate = true;
+                foreach(var user in context.Users)
+                {
+                    if(user.Email == EmailTextBox.Text)
+                    {
+                        MessageBox.Show("Account with this email is already created.");
+                        canCreate = false;
+                        break;
+                    }
+                    if(user.Login == LoginTextBox.Text)
+                    {
 
-            //            MessageBox.Show("This login is already occupied.");
-            //            canCreate = false;
-            //            break;
-            //        }
-            //    }
-            //    if (canCreate)
-            //    {
-            //        if (Password.Password != null && ConfirmPassword.Password != null)
-            //        {
-            //            Regex passwordValidation = new Regex(@"(\w+|\W+(\d+))");
-            //            if (passwordValidation.IsMatch(Password.Password))
-            //            {
-            //                if (Password.Password == ConfirmPassword.Password)
-            //                {
+                        MessageBox.Show("This login is already occupied.");
+                        canCreate = false;
+                        break;
+                    }
+                }
+                if (canCreate)
+                {
+                    if (Password.Password != null && ConfirmPassword.Password != null)
+                   {
+                       Regex passwordValidation = new Regex(@"(\w+|\W+(\d+))");
+                        if (passwordValidation.IsMatch(Password.Password))
+                        {
+                            if (Password.Password == ConfirmPassword.Password)
+                            {
+                                context.SaveChanges();
+                                User user = new User(EmailTextBox.Text, LoginTextBox.Text, Password.Password);
+                                Window2 wind = new Window2(user);
+                                wind.Show();
+                                
+                               this.Close();
 
-            //                    User user = new User(EmailTextBox.Text, LoginTextBox.Text, Password.Password);
-            //                    Window2 wind = new Window2(user);
-            //                    wind.Show();
-            //                    this.Close();
-
-            //                }
-            //                else
-            //                {
-            //                    MessageBox.Show("Fields \"Password\" and \"Confirm Password\" do not match");
-            //                }
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("Invalid password.");
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid email.");
-            //}
+                            }
+                            else
+                            {
+                                MessageBox.Show("Fields \"Password\" and \"Confirm Password\" do not match");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid password.");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid email.");
+            }
         }
     }
 }

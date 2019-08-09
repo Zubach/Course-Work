@@ -17,6 +17,12 @@ namespace WpfApp3
             this.Sites = new HashSet<Site>();
         }
 
+        public User(string email,string login,string password){
+            Login = login;
+            Email = email;
+            Password = password;
+        }
+
         [Key]
         public int ID { get; set; }
 

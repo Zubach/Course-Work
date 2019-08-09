@@ -17,6 +17,14 @@ namespace WpfApp3
            
         }
 
+        public Site(string name,string url,string description, string login,string password){
+            Name = name;
+            Url = url;
+            Description = description;
+            Login = login;
+            Password = password;
+        }   
+
         [Key]
         public int ID { get; set; }
 

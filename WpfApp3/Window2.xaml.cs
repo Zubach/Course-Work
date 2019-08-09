@@ -23,11 +23,9 @@ namespace WpfApp3
     /// </summary>
     public partial class Window2 : Window
     {
+        Context context = new Context();
 
-        public List<User> users = new List<User>()
-        {
-         
-        };
+       
         
         public Window2()
         {
@@ -35,40 +33,20 @@ namespace WpfApp3
 
 
 
-            //try
-            //{
-            //    using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
-            //    {
-            //        XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-            //        users = formatter.Deserialize(fs) as List<User>;
-            //        //formatter.Serialize(fs, users);
-            //    }
-            //}
-            //catch(Exception e)
-            //{
-
-            //}
+           
         }
 
         public Window2(User user)
         {
             InitializeComponent();
 
-            //try
-            //{
-            //    using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
-            //    {
-            //        XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-            //        users = formatter.Deserialize(fs) as List<User>;
-            //        // formatter.Serialize(fs, users);
-            //    }
-            //}
-            //catch (Exception e) { }
+          
+           
 
-            //if (user != null)
-            //{
-            //    users.Add(user);
-            //}
+            if (user != null)
+            {
+                context.Users.Add(user);
+            }
         }
 
         User foundUser = null;
@@ -77,7 +55,7 @@ namespace WpfApp3
         {
             bool TrueAccount = false;
             
-            foreach(var item in users)
+            foreach(var item in context.Users)
             {
                 if(item.Login == LoginTextBox.Text && item.Password == Password.Password)
                 {
@@ -111,9 +89,11 @@ namespace WpfApp3
             else
             {
                 (sender as DispatcherTimer).Stop();
-                Window3 wind = new Window3(foundUser,users);
+                Window3 wind = new Window3(foundUser);
                
                 wind.Show();
+
+                context.SaveChanges();
                 this.Close();
                
             }

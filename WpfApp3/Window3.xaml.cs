@@ -25,7 +25,7 @@ namespace WpfApp3
     {
 
         public User user = null;
-        List<User> users = null;
+        Context context = new Context();
         
         public Window3()
         {
@@ -36,16 +36,16 @@ namespace WpfApp3
             
         }
 
-        public Window3(User user,List<User> users)
+        public Window3(User user)
         {
 
 
             InitializeComponent();
-            //this.user = user;
+            this.user = user;
 
 
-            //this.users = users;
-            //ListView.ItemsSource = user.sites;
+           
+            ListView.ItemsSource = user.Sites;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -84,11 +84,11 @@ namespace WpfApp3
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            //if(ListView.SelectedItem != null)
-            //{
-            //    user.sites.Remove(ListView.SelectedItem as Site);
-            //    ListView.Items.Refresh();
-            //}
+            if(ListView.SelectedItem != null)
+            {
+                user.Sites.Remove(ListView.SelectedItem as Site);
+                ListView.Items.Refresh();
+            }
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -99,12 +99,12 @@ namespace WpfApp3
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //using (FileStream fs = new FileStream("Accounts.xml", FileMode.OpenOrCreate))
-            //{
-            //    XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-            //    //users = formatter.Deserialize(fs) as List<User>;
-            //     formatter.Serialize(fs, users);
-            //}
+           
+
+            using(Context context = new Context()){
+                
+                context.SaveChanges();
+            }
         }
 
         class Pair
@@ -137,49 +137,49 @@ namespace WpfApp3
         }
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-            //List<Pair> passwords = new List<Pair>();
-            //foreach(var site in user.sites)
-            //{
-            //    bool found = false;
-            //    foreach (var item in passwords)
-            //    {
-            //        if (item.Str == site.Password)
-            //        {
-            //            found = true;
-            //            break;
-            //        }
-            //    }
-            //    if(!found)
-            //        passwords.Add(new Pair(site.Password));
+            List<Pair> passwords = new List<Pair>();
+            foreach(var site in user.Sites)
+            {
+                bool found = false;
+               foreach (var item in passwords)
+                {
+                    if (item.Str == site.Password)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found)
+                    passwords.Add(new Pair(site.Password));
                 
-            //}
+            }
 
 
-            //foreach(var site in user.sites)
-            //{
-            //    foreach(var item in passwords)
-            //    {
-            //        if (item.Str == site.Password)
-            //        {
-            //            item.Bust();
+            foreach(var site in user.Sites)
+            {
+                foreach(var item in passwords)
+                {
+                    if (item.Str == site.Password)
+                    {
+                        item.Bust();
                         
-            //            break;
-            //        }
-            //    }
-            //}
+                        break;
+                    }
+                }
+            }
 
-            //if (passwords.Count > 0)
-            //{
-            //    Pair max = passwords[0];
-            //    foreach (var item in passwords)
-            //    {
-            //        if(item.Count > max.Count)
-            //        {
-            //            max = item;
-            //        }
-            //    }
-            //    MessageBox.Show("Password: " + max.Str + '\n' + "Count of match: " + max.Count);
-            //}
+            if (passwords.Count > 0)
+            {
+                Pair max = passwords[0];
+                foreach (var item in passwords)
+                {
+                    if(item.Count > max.Count)
+                    {
+                        max = item;
+                    }
+                }
+                MessageBox.Show("Password: " + max.Str + '\n' + "Count of match: " + max.Count);
+            }
 
 
             
@@ -187,87 +187,87 @@ namespace WpfApp3
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
-            //List<Pair> logins = new List<Pair>();
-            //foreach (var site in user.sites)
-            //{
-            //    bool found = false;
-            //    foreach (var item in logins)
-            //    {
-            //        if (item.Str == site.Login)
-            //        {
-            //            found = true;
-            //            break;
-            //        }
-            //    }
-            //    if (!found)
-            //        logins.Add(new Pair(site.Login));
+            List<Pair> logins = new List<Pair>();
+            foreach (var site in user.Sites)
+            {
+                bool found = false;
+                foreach (var item in logins)
+                {
+                    if (item.Str == site.Login)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    logins.Add(new Pair(site.Login));
 
-            //}
+            }
 
 
-            //foreach (var site in user.sites)
-            //{
-            //    foreach (var item in logins)
-            //    {
-            //        if (item.Str == site.Login)
-            //        {
-            //            item.Bust();
+            foreach (var site in user.Sites)
+            {
+                foreach (var item in logins)
+                {
+                    if (item.Str == site.Login)
+                    {
+                        item.Bust();
                        
-            //            break;
-            //        }
-            //    }
-            //}
+                        break;
+                    }
+                }
+            }
 
-            //if (logins.Count > 0)
-            //{
-            //    Pair max = logins[0];
-            //    foreach (var item in logins)
-            //    {
-            //        if (item.Count > max.Count)
-            //        {
-            //            max = item;
-            //        }
-            //    }
-            //    MessageBox.Show("Login: " + max.Str + '\n' + "Count of match: " + max.Count);
-            //}
+            if (logins.Count > 0)
+            {
+                Pair max = logins[0];
+                foreach (var item in logins)
+                {
+                    if (item.Count > max.Count)
+                    {
+                        max = item;
+                    }
+                }
+                MessageBox.Show("Login: " + max.Str + '\n' + "Count of match: " + max.Count);
+            }
         }
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            //int key;
-            //if(Key.Text != null &&  int.TryParse(Key.Text,out key))
-            //{
-            //    foreach(var site in user.sites)
-            //    {
-            //        site.Password = Cryptographer.Encrypt(site.Password, key);
-            //    }
-            //    ListView.Items.Refresh();
-            //    (sender as Button).IsEnabled = false;
-            //    DecryptBtn.IsEnabled = true;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid Key");
-            //}
+            int key;
+            if(Key.Text != null &&  int.TryParse(Key.Text,out key))
+            {
+                foreach(var site in user.Sites)
+                {
+                    site.Password = Cryptographer.Encrypt(site.Password, key);
+                }
+                ListView.Items.Refresh();
+                (sender as Button).IsEnabled = false;
+                DecryptBtn.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Key");
+            }
         }
 
         private void DecryptBtn_Click(object sender, RoutedEventArgs e)
         {
-            //int key;
-            //if (Key.Text != null && int.TryParse(Key.Text, out key))
-            //{
-            //    foreach (var site in user.sites)
-            //    {
-            //        site.Password = Cryptographer.Decrypt(site.Password, key);
-            //    }
-            //    ListView.Items.Refresh();
-            //    (sender as Button).IsEnabled = false;
-            //    EncryptBtn.IsEnabled = true;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid Key");
-            //}
+            int key;
+            if (Key.Text != null && int.TryParse(Key.Text, out key))
+            {
+                foreach (var site in user.Sites)
+                {
+                    site.Password = Cryptographer.Decrypt(site.Password, key);
+                }
+                ListView.Items.Refresh();
+                (sender as Button).IsEnabled = false;
+                EncryptBtn.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Key");
+            }
         }
     }
 }
