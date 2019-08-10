@@ -25,7 +25,7 @@ namespace WpfApp3
     {
 
         public User user = null;
-        Context context = new Context();
+       public Context context = new Context();
         
         public Window3()
         {

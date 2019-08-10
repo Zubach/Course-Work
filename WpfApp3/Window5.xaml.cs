@@ -56,12 +56,26 @@ namespace WpfApp3
         {
             if(site != null)
             {
+
+               
+
+              var editSite =  parent.context.Sites.Where(s=> s.Name == site.Name && s.Login == site.Login && s.Password == site.Password && s.Description == site.Description).FirstOrDefault();
+                
+                editSite.Name = NameTextBox.Text;
+                editSite.Login = LoginTextBox.Text;
+                editSite.Password = Password.Password;
+                editSite.Url = UrlTextBox.Text;
+                editSite.Description = Description.Text;
+
+
                 site.Name = NameTextBox.Text;
                 site.Login = LoginTextBox.Text;
                 site.Password = Password.Password;
                 site.Url = UrlTextBox.Text;
                 site.Description = Description.Text;
 
+                parent.context.SaveChanges();
+                
 
                 parent.ListView.Items.Refresh();
                 this.Close();
