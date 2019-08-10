@@ -69,8 +69,15 @@ namespace WpfApp3
             else
             {
                 Site newsite = new Site(NameTextBox.Text, UrlTextBox.Text, Description.Text, LoginTextBox.Text, Password.Password);
+               // newsite.User = parent.user;
+                newsite.UserID = parent.user.ID;
                 parent.user.Sites.Add(newsite);
-
+                using(Context context = new Context()){
+                    context.Sites.Add(newsite);
+                    context.SaveChanges();
+                }
+                
+               
                 parent.ListView.Items.Refresh();
                 this.Close();
             }
