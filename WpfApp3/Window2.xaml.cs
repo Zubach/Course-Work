@@ -36,19 +36,6 @@ namespace WpfApp3
            
         }
 
-        public Window2(User user)
-        {
-            InitializeComponent();
-
-          
-           
-
-            if (user != null)
-            {
-                context.Users.Add(user);
-            }
-        }
-
         User foundUser = null;
 
         private void Button_Click(object sender, RoutedEventArgs e)

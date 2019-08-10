@@ -67,9 +67,11 @@ namespace WpfApp3
                         {
                             if (Password.Password == ConfirmPassword.Password)
                             {
+                                 User user = new User(EmailTextBox.Text, LoginTextBox.Text, Password.Password);
+                                context.Users.Add(user);
                                 context.SaveChanges();
-                                User user = new User(EmailTextBox.Text, LoginTextBox.Text, Password.Password);
-                                Window2 wind = new Window2(user);
+                               
+                                Window2 wind = new Window2();
                                 wind.Show();
                                 
                                this.Close();
