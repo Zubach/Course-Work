@@ -86,6 +86,18 @@ namespace WpfApp3
         {
             if(ListView.SelectedItem != null)
             {
+                Site site = ListView.SelectedItem as Site;
+                
+                using(Context context = new Context()){
+                  
+                    Site deletedSite = context.Sites.Where(s => s.Login == site.Login && s.Name == site.Name && s.Password == site.Password).FirstOrDefault();
+                    
+                   
+                   context.Sites.Attach(deletedSite);
+                    context.Sites.Remove(deletedSite);
+                   
+                    context.SaveChanges();
+                } 
                 user.Sites.Remove(ListView.SelectedItem as Site);
                 ListView.Items.Refresh();
             }
