@@ -35,13 +35,13 @@ namespace WpfApp3
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int counter = 0;
-            //foreach(var site in parent.user.sites)
-            //{
-            //    if(site.Login == login.Text && site.Password == password.Text)
-            //    {
-            //        counter++;
-            //    }
-            //}
+            foreach(var site in parent.user.Sites)
+            {
+                if(site.Login == login.Text && site.Password == password.Text)
+                {
+                    counter++;
+                }
+            }
 
             CountTextBlock.Text = "Count of matches: " + counter;
         }
